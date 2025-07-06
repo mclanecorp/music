@@ -1,0 +1,6 @@
+@use '../../../mixin.scss';
+
+.library_empty_state {
+  @include mixin.emptyState;
+  padding: 6rem 0;
+}

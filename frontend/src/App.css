@@ -1,0 +1,91 @@
+/* General Spotify-like theme */
+body {
+  background-color: #121212; /* Darkest background */
+  color: #b3b3b3; /* Light grey text */
+  font-family: 'Circular Std', 'Helvetica Neue', Helvetica, Arial, sans-serif; /* Spotify's font, fallback to common sans-serif */
+}
+
+.container {
+  background-color: #1e1e1e; /* Slightly lighter dark for content areas */
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5); /* Subtle shadow for depth */
+}
+
+/* Header */
+h1 {
+  color: #ffffff; /* White for main titles */
+  font-weight: bold;
+}
+
+/* Search Bar */
+.input-group .form-control {
+  background-color: #282828; /* Dark input background */
+  border: 1px solid #535353; /* Grey border */
+  color: #ffffff; /* White text input */
+  border-radius: 500px; /* Rounded corners */
+  padding: 10px 20px;
+}
+
+.input-group .form-control::placeholder {
+  color: #b3b3b3; /* Light grey placeholder */
+}
+
+.input-group .btn-primary {
+  background-color: #1db954; /* Spotify green */
+  border-color: #1db954;
+  border-radius: 500px; /* Rounded corners */
+  padding: 10px 20px;
+  margin-left: 10px; /* Space between input and button */
+}
+
+.input-group .btn-primary:hover {
+  background-color: #1ed760; /* Lighter green on hover */
+  border-color: #1ed760;
+}
+
+/* Search Results List */
+.list-group-item {
+  background-color: #1e1e1e; /* Same as container background */
+  border: none; /* Remove default borders */
+  color: #ffffff; /* White text for track titles */
+}
+
+.list-group-item span {
+  color: #ffffff; /* Ensure track name is white */
+  margin-bottom: 5px; /* Space between items */
+  border-radius: 4px;
+  transition: background-color 0.2s ease; /* Smooth hover transition */
+}
+
+.list-group-item:hover {
+  background-color: #282828; /* Darker on hover */
+}
+
+.list-group-item.active {
+  background-color: #1db954; /* Spotify green for active track */
+  color: #ffffff;
+}
+
+/* Now Playing Section */
+.mt-4 h2 {
+  color: #ffffff;
+  margin-bottom: 15px;
+}
+
+.mt-4 audio {
+  width: 100%;
+  background-color: #282828; /* Dark background for audio player */
+  border-radius: 8px;
+  padding: 10px;
+}
+
+/* Basic Bootstrap overrides for better integration */
+.form-control:focus {
+  border-color: #1db954; /* Green focus border */
+  box-shadow: 0 0 0 0.25rem rgba(29, 185, 84, 0.25); /* Green shadow */
+}
+
+.btn:focus {
+  box-shadow: 0 0 0 0.25rem rgba(29, 185, 84, 0.25); /* Green shadow */
+}

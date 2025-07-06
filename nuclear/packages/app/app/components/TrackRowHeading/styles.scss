@@ -1,0 +1,6 @@
+@use '../../vars';
+
+.heading_container {
+  transition: vars.$short-duration;
+  background: rgba(vars.$bgdark, 0.2);
+}

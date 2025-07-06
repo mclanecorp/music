@@ -1,0 +1,27 @@
+@use '../../mixin.scss';
+@use '../../vars.scss';
+
+.playlists_submenu {
+  display: flex;
+  flex-flow: column;
+
+  .playlists_submenu_entry {
+    @include mixin.ellipsis;
+    color: rgba(vars.$white, 0.5);
+    padding: 0.5rem 1rem;
+
+    &:hover {
+      background: vars.$background3;
+    }
+    
+    .fa {
+      width: 20px;
+    }
+  }
+  
+  .active_nav_link {
+    .playlists_submenu_entry {
+      color: vars.$white;
+    }
+  }
+}

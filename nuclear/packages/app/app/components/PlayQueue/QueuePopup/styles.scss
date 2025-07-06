@@ -1,0 +1,44 @@
+@use '../../../vars.scss';
+
+.queue_popup {
+  background-color: vars.$background !important;
+  color: vars.$white !important;
+  border-color: vars.$background2 !important;
+  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.18),
+    0px 0px 20px 0px rgba(0, 0, 0, 0.09) !important;
+  height: auto !important;
+  transition: opacity vars.$very-short-duration;
+
+  &:before {
+    background-color: vars.$background !important;
+  }
+
+  &.bottom:before {
+    box-shadow: -1px -1px 0 0 vars.$background2 !important;
+  }
+
+  &.top:before {
+    box-shadow: 1px 1px 0 0 vars.$background2 !important;
+  }
+
+  &.hidden {
+    opacity: 0;
+  }
+
+  .menu.transition.visible {
+    height: max-content;
+    background-color: vars.$background2;
+    padding: 0;
+  }
+
+  hr {
+    margin: 1em 0 0.5em 0;
+    border: none;
+    border-bottom: 1px solid vars.$background2;
+  }
+}
+
+.queue_popup_buttons_container {
+  display: flex;
+  flex-direction: column;
+}

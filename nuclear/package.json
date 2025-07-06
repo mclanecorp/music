@@ -1,0 +1,216 @@
+{
+  "name": "nuclear",
+  "version": "0.6.48",
+  "description": "Streaming music player that finds music sources automatically.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nukeop/nuclear.git"
+  },
+  "keywords": [
+    "electron",
+    "music",
+    "youtube"
+  ],
+  "author": {
+    "name": "nukeop <12746779+nukeop@users.noreply.github.com>"
+  },
+  "license": "AGPL-3.0",
+  "bugs": {
+    "url": "https://github.com/nukeop/nuclear/issues"
+  },
+  "homepage": "https://github.com/nukeop/nuclear#readme",
+  "scripts": {
+    "postinstall": "electron-builder install-app-deps && lerna run build --scope @nuclear/scanner",
+    "start": "lerna run start --stream --parallel",
+    "build": "shx rm -rf dist && lerna run build && npm run pack",
+    "test": "lerna run test",
+    "coverage": "lerna run coverage",
+    "lint": "lerna run lint",
+    "lint:fix": "lerna run lint:fix",
+    "storybook": "lerna run storybook",
+    "pack": "cross-env NODE_OPTIONS='--max-old-space-size=8192' electron-builder --dir -c.extraMetadata.main=dist/main.js",
+    "build:linux": "lerna run build && electron-builder -c.extraMetadata.main=dist/main.js --linux --publish onTag",
+    "build:windows": "lerna run build && cross-env NODE_OPTIONS='--max-old-space-size=8192' electron-builder -c.extraMetadata.main=dist/main.js --windows --publish onTag",
+    "build:macos": "lerna run build && lerna run build-macos && cross-env NODE_OPTIONS='--max-old-space-size=8192' electron-builder -c.extraMetadata.main=dist/main.js --macos --x64 --publish onTag",
+    "build:macos-arm64": "lerna run build && lerna run build-macos-arm64 && cross-env NODE_OPTIONS='--max-old-space-size=8192' electron-builder -c.extraMetadata.main=dist/main.js --macos --arm64 --publish onTag",
+    "build:all": "lerna run build && cross-env NODE_OPTIONS='--max-old-space-size=8192' electron-builder -c.extraMetadata.main=dist/main.js -mwl"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^4.33.0",
+    "@typescript-eslint/parser": "^4.33.0",
+    "babel-eslint": "^10.0.3",
+    "cross-env": "^7.0.3",
+    "electron": "^33.3.1",
+    "electron-builder": "^25.1.8",
+    "eslint": "^7.18.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-react": "^7.12.4",
+    "husky": "^3.1.0",
+    "lerna": "^7.3.1",
+    "lint-staged": "^10.0.0-beta.14",
+    "shx": "^0.3.3",
+    "typescript": "^4.2.4"
+  },
+  "optionalDependencies": {
+    "7zip-bin-mac": "^1.0.1"
+  },
+  "engines": {
+    "node": ">=22.0.0",
+    "npm": ">=10.0.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.js": "eslint --fix",
+    "*.jsx": "eslint --fix",
+    "*.ts": "eslint --fix",
+    "*.tsx": "eslint --fix"
+  },
+  "workspaces": [
+    "packages/*"
+  ],
+  "build": {
+    "appId": "nuclear",
+    "productName": "nuclear",
+    "artifactName": "${productName}-v${env.VERSION}-${arch}.${ext}",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "dist/"
+    ],
+    "extraFiles": [
+      {
+        "from": "packages/app/resources",
+        "to": "resources",
+        "filter": [
+          "**/*"
+        ]
+      },
+      {
+        "from": "packages/main/resources",
+        "to": "resources",
+        "filter": [
+          "**/*"
+        ]
+      }
+    ],
+    "releaseInfo": {
+      "releaseName": "Nuclear ${env.VERSION}"
+    },
+    "fileAssociations": [
+      {
+        "ext": "mp3",
+        "mimeType": "audio/mp3"
+      },
+      {
+        "ext": "mp3",
+        "mimeType": "audio/mpeg"
+      },
+      {
+        "ext": "ogg",
+        "mimeType": "audio/ogg"
+      },
+      {
+        "ext": "opus",
+        "mimeType": "audio/ogg"
+      },
+      {
+        "ext": "flac",
+        "mimeType": "audio/flac"
+      },
+      {
+        "ext": "mp4",
+        "mimeType": "audio/mp4"
+      }
+    ],
+    "linux": {
+      "icon": "./build/icons/512x512.png",
+      "desktop": {
+        "Name": "Nuclear",
+        "Name[es]": "Reproductor de música Nuclear",
+        "Comment[es]": "Reproductor que retransmite música desde fuentes encontradas automáticamente."
+      },
+      "target": [
+        "AppImage",
+        "deb",
+        "rpm",
+        "tar.gz",
+        "snap"
+      ],
+      "category": "Audio;AudioVideo;Network;Player;Music",
+      "extraFiles": [
+        {
+          "from": "packages/main/bin/linux",
+          "to": "resources/bin",
+          "filter": [
+            "**/*"
+          ]
+        },
+        {
+          "from": "node_modules/ffmpeg-static",
+          "to": "resources/bin",
+          "filter": [
+            "ffmpeg"
+          ]
+        }
+      ]
+    },
+    "mac": {
+      "category": "public.app-category.music",
+      "target": [
+        {
+          "target": "dmg"
+        }
+      ],
+      "mergeASARs": true,
+      "extraFiles": [
+        {
+          "from": "packages/main/bin/mac",
+          "to": "resources/bin",
+          "filter": [
+            "**/*"
+          ]
+        },
+        {
+          "from": "node_modules/ffmpeg-static",
+          "to": "resources/bin",
+          "filter": [
+            "ffmpeg"
+          ]
+        }
+      ]
+    },
+    "win": {
+      "target": [
+        "nsis",
+        "portable"
+      ],
+      "extraFiles": [
+        {
+          "from": "packages/main/bin/win",
+          "to": "resources/bin",
+          "filter": [
+            "**/*"
+          ]
+        },
+        {
+          "from": "node_modules/ffmpeg-static",
+          "to": "resources/bin",
+          "filter": [
+            "ffmpeg.exe"
+          ]
+        }
+      ]
+    },
+    "nsis": {
+      "artifactName": "${productName} Setup ${env.VERSION}.${ext}"
+    }
+  },
+  "dependencies": {
+    "sqlite3": "^5.1.6"
+  }
+}

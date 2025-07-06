@@ -1,0 +1,56 @@
+@use '../../common';
+
+  $padding: 1em;
+  $miniPadding: 0.5em;
+
+.track_row {
+  transition: common.$short-duration;
+  cursor: pointer;
+  color: common.$white;
+  user-select: none;
+
+  &:hover {
+    background: rgba(common.$background2, 0.25);
+  }
+
+  &:last-child {
+    td {
+      border-bottom: none;
+    }
+  }
+
+  a {
+    color: common.$white;
+  }
+
+  td {
+    padding: $padding;
+    border-bottom: 1px solid common.$background2;
+  }
+
+  &.mini td {
+    padding: $miniPadding;
+  }
+
+  .track_row_buttons {
+    width: 1px;
+  }
+
+  .track_row_position,
+  .track_row_duration {
+    text-align: center;
+  }
+
+  .track_row_thumbnail {
+    position: relative;
+    box-sizing: content-box;
+    padding: 0 !important;
+
+    img {
+      width: 3em;
+      height: 3em;
+      display: block;
+      object-fit: contain;
+    }
+  }
+}

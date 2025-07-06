@@ -1,0 +1,52 @@
+@use "../../common.scss";
+
+.track_info {
+  display: flex;
+  flex-flow: row;
+  width: calc(50% - 65px);
+
+  & > *:not(:first-child) {
+    margin-left: 1em;
+  }
+
+  & > *:last-child {
+    margin-right: 1em;
+  }
+
+  .artist_part {
+    display: flex;
+    flex-flow: column;
+    justify-content: space-evenly;
+    align-items: flex-start;
+    max-width: calc(100% - 136px);
+  }
+
+  .track_name {
+    @include common.ellipsis;
+    overflow-x: hidden;
+    overflow-y: visible;
+    line-height: 1.25;
+    max-width: 100%;
+    font-size: 22px;
+  }
+
+  .artist_name {
+    font-size: 14px;
+    color: rgba(common.$white, 0.6);
+    cursor: pointer;
+
+    &:hover {
+      color: rgba(common.$white, 0.8);
+    }
+  }
+
+  .favorite_part {
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+
+    .icon {
+      cursor: pointer;
+    }
+  }
+}

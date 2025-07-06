@@ -1,0 +1,35 @@
+@use "../../../vars";
+
+a.contributors_card.ui.card {
+  background: transparent;
+  color: vars.$white;
+  border: 2px solid vars.$white;
+
+  &:hover,
+  &:focus,
+  &:active {
+    background: transparent;
+    border: 2px solid vars.$white;
+  }
+
+  .content {
+    .header,
+    .description {
+      color: vars.$white;
+    }
+
+    .meta {
+      font-size: 0.85em !important;
+      word-break: break-all;
+      color: rgba(vars.$white, 0.75);
+    }
+  }
+}
+
+.ui.loader.contributors_loader {
+  margin-top: 4rem;
+}
+
+.contributors_error {
+  color: vars.$red;
+}

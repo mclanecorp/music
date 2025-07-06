@@ -1,0 +1,22 @@
+@use "../../common.scss";
+
+.nuclear.checkbox {
+  input ~ label {
+    &,
+    &:hover,
+    &:active,
+    &:focus {
+      color: common.$white;
+
+      &::before,
+      &::after {
+        color: common.$white !important;
+        background: transparent !important;
+      }
+
+      &::before {
+        border: 1px solid common.$white !important;
+      }
+    }
+  }
+}

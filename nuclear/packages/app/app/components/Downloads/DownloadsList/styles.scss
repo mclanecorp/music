@@ -1,0 +1,29 @@
+@use "sass:color";
+@use '../../../vars.scss';
+
+.downloads_list {
+  background: none !important;
+  
+  thead {
+    font-size: 16px;
+    font-variant: small-caps;
+    background: none;
+
+    th:nth-child(3) {
+      text-align: right;
+    }
+  }
+
+  tbody>tr {
+    transition: vars.$short-duration ease-in-out;
+    border-bottom: 1px solid rgba(vars.$background2, 0.2);
+
+    &:hover {
+      background: color.adjust(vars.$background, $lightness: 10%);
+    }
+
+    td:nth-child(3) {
+      text-align: right;
+    }
+  }
+}

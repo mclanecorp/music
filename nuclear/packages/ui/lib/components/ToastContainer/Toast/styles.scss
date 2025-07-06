@@ -1,0 +1,81 @@
+@use "sass:color";
+@use '../../../common.scss';
+
+.toast {
+  @include common.roundCorners;
+  @include common.transition;
+  @include common.shadow;
+  position: relative;
+  background: common.$background2;
+  padding: 1em;
+  animation: fade-in 0.5s normal forwards ease-in-out;
+  user-select: none;
+  -moz-user-select: none;
+  cursor: pointer;
+  box-sizing: content-box;
+
+  height: 3em;
+  width: 35em;
+  margin-bottom: 1em;
+
+  .toast_content {
+    position: relative;
+    display: flex;
+    flex-flow: row;
+    height: 100%;
+    width: 100%;
+  }
+
+  .toast_icon {
+    position: relative;
+    display: flex;
+    height: 100%;
+    margin-right: 1em;
+    flex: 0 0 auto;
+
+    * {
+      height: 100%;
+      width: auto;
+    }
+  }
+
+  .toast_text {
+    position: relative;
+    display: flex;
+    flex-flow: column;
+    flex: 1 1 auto;
+    max-width: 100%;
+  
+    white-space: nowrap;
+    overflow: hidden;
+  }
+
+  .title {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: common.$white;
+    font-weight: bold;
+  }
+
+  .details {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: rgba(common.$white, 0.7);
+  }
+
+  &.error {
+    background: common.$red;
+  }
+
+  &.warning {
+    background: color.adjust(common.$orange, $lightness: -15%);
+  }
+
+  &.info {
+    background: common.$blue;
+  }
+
+  &.success {
+    background: color.adjust(common.$green, $lightness: -25%);
+  }
+}

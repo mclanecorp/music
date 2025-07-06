@@ -1,0 +1,34 @@
+@use "sass:color";
+@use "../../common.scss";
+
+$smallDisplacement: 10px;
+$smallBlur: 30px;
+$bigDisplacement: 20px;
+$bigBlur: 60px;
+$contrast: 5%;
+
+.neumorphic_box {
+  height: 100%;
+  border-radius: 25px;
+  background: transparent;
+  box-shadow: $bigDisplacement $bigDisplacement $bigBlur color.adjust(common.$background, $lightness: -$contrast),
+  (-$bigDisplacement) (-$bigDisplacement) $bigBlur color.adjust(common.$background, $lightness: $contrast);
+  color: common.$white;
+  margin: 1em;
+
+  &.small {
+    box-shadow: $smallDisplacement $smallDisplacement $smallBlur color.adjust(common.$background, $lightness: -$contrast),
+    (-$smallDisplacement) (-$smallDisplacement) $smallBlur color.adjust(common.$background, $lightness: $contrast);
+    z-index:1000;
+  }
+
+  &.pressed {
+    box-shadow: inset $bigDisplacement $bigDisplacement $bigBlur color.adjust(common.$background, $lightness: -$contrast),
+    inset (-$bigDisplacement) (-$bigDisplacement) $bigBlur color.adjust(common.$background, $lightness: $contrast);
+  }
+
+  &.small.pressed {
+    box-shadow: inset $smallDisplacement $smallDisplacement $smallBlur color.adjust(common.$background, $lightness: -$contrast),
+    inset (-$smallDisplacement) (-$smallDisplacement) $smallBlur color.adjust(common.$background, $lightness: $contrast);
+  }
+}

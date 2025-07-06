@@ -1,0 +1,103 @@
+@use "sass:color";
+@use "sass:map";
+@use "../../common.scss";
+
+button.nuclear.ui.button {
+  position: relative;
+
+  background: common.$bglight;
+  color: common.$white;
+  white-space: nowrap;
+  margin: 0;
+
+  &:hover {
+    background: color.mix(common.$bglight, common.$bgdark, 90%);
+  }
+
+  &:focus {
+    background: color.adjust(color.mix(common.$bglight, common.$bgdark, 90%), $lightness: -5%);
+  }
+
+  &:active {
+    background: color.adjust(color.mix(common.$bglight, common.$bgdark, 90%), $lightness: -7.5%);
+  }
+
+  &.basic {
+    color: common.$white !important;
+    background: transparent !important;
+    box-shadow: 0 0 0 1px rgba(common.$white, 0.75) inset;
+
+    &:hover {
+      background: rgba(common.$white, 0.2) !important;
+    }
+
+    &:focus {
+      background: rgba(common.$white, 0.3) !important;
+    }
+
+    &:active {
+      background: rgba(common.$white, 0.4) !important;
+    }
+
+    i {
+      color: common.$white;
+    }
+  }
+
+  &.toggled {
+    background: color.adjust(color.mix(common.$bglight, common.$bgdark, 90%), $lightness: -7.5%) !important;
+  }
+
+  $colors: ("green", "blue", "purple", "pink", "orange", "red");
+  $colorvars: (
+    "green": common.$green,
+    "blue": common.$blue,
+    "purple": common.$purple,
+    "pink": common.$pink,
+    "orange": common.$orange,
+    "red": common.$red
+  );
+  @each $color in $colors {
+    $button-color: map.get($colorvars, $color);
+    &.#{$color} {
+      background: $button-color;
+
+      &.text {
+        color: $button-color;
+      }
+
+      &:hover {
+        background: color.mix($button-color, common.$bglight, 90%);
+      }
+
+      &:focus {
+        background: color.adjust(color.mix($button-color, common.$bglight, 90%), $lightness: -5%);
+      }
+
+      &:active {
+        background: color.adjust(color.mix($button-color, common.$bglight, 90%), $lightness: -7.5%);
+      }
+    }
+  }
+
+  &.borderless {
+    box-shadow: none;
+  }
+
+  &.text {
+    background: transparent;
+    font-weight: normal;
+    padding: 0;
+    margin: 0 0.5em;
+
+    &:hover,
+    &:focus,
+    &:active {
+      background: transparent;
+    }
+
+    &:hover {
+      color: common.$white;
+    }
+  }
+}

@@ -1,0 +1,12 @@
+.player_button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  margin-right: 4px;
+
+  &.disabled {
+    opacity: 0.2;
+    cursor: not-allowed;
+  }
+}

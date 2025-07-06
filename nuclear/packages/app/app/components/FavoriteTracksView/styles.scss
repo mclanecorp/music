@@ -1,0 +1,58 @@
+@use "../../mixin";
+@use "../../vars";
+
+.favorite_tracks_view {
+  display: flex;
+  flex-flow: column;
+  height: 100%;
+
+  .empty_state {
+    @include mixin.emptyState;
+  }
+
+  .favorite_tracks_segment {
+    flex: 1 1 auto;
+  }
+
+  .header_container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .tracks_container {
+    overflow: auto;
+  }
+
+  .favorite_tracks_table {
+    background: transparent !important;
+
+    .thead {
+      th {
+        position: relative;
+        color: rgba(vars.$white, 0.5) !important;
+        font-size: 20px !important;
+        background: transparent !important;
+        border-bottom: 0.5px solid rgba(vars.$white, 0.2) !important;
+      }
+
+      i {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        width: 100%;
+      }
+
+      th:nth-child(2) {
+        width: 42px;
+      }
+    }
+
+    .tbody {
+      tr {
+        color: vars.$white;
+      }
+    }
+  }
+}
