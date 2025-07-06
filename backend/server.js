@@ -7,7 +7,9 @@ const Database = require("better-sqlite3");
 const app = express();
 const port = process.env.PORT || 3001;
 
-app.use(cors());
+app.use(cors({
+  origin: 'https://music-tka8.onrender.com'
+}));
 app.use(express.json()); // To parse JSON request bodies
 
 // Initialize SQLite Database
