@@ -1,7 +1,8 @@
 import React, { useState, useRef, useEffect } from "react";
 import "./App.css";
 
-const API_BASE_URL = process.env.REACT_APP_API_URL || "http://localhost:3001";
+const API_BASE_URL =
+  process.env.REACT_APP_API_URL || "https://music-tka8.onrender.com";
 
 function App() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -41,9 +42,7 @@ function App() {
     if (!searchQuery) return;
 
     try {
-      const response = await fetch(
-        `${API_BASE_URL}/search?q=${searchQuery}`
-      );
+      const response = await fetch(`${API_BASE_URL}/search?q=${searchQuery}`);
       const data = await response.json();
       setSearchResults(data);
     } catch (error) {
